@@ -3,12 +3,12 @@ import LanguageTabs, {
   ALL_LANGUAGES,
 } from "@/components/snippets/LanguageTabs";
 import SnippetCard from "@/components/snippets/SnippetCard";
-import { spacing } from "@/constants";
+import { spacing, typography } from "@/constants";
 import { useTheme } from "@/context/theme";
 import { useSnippets } from "@/hooks/useSnippets";
 import { useRouter } from "expo-router";
-import { useState } from "react";
-import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
 
 export default function Home() {
   const { colors } = useTheme();
@@ -50,6 +50,9 @@ export default function Home() {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <Text style={[styles.title, { color: colors.onSurface }]}>
+        My Snippets
+      </Text>
       <LanguageTabs selected={selected} onSelect={setSelected} />
       <FlatList
         data={snippets}
@@ -89,6 +92,12 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  title: {
+    marginHorizontal: spacing.lg,
+    marginTop: spacing.lg,
+    marginBottom: spacing.md,
+    ...typography.headlineLg,
   },
   center: {
     flex: 1,
